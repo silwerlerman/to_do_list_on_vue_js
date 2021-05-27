@@ -19,7 +19,9 @@
     <div>
       <button v-if="task.completed">Восстановить</button>
       <button v-if="!task.completed">Редактировать</button>
-      <button v-if="!task.completed">Удалить</button>
+      <button v-if="!task.completed" v-on:click="$emit('remove-task', task.id)">
+        Удалить
+      </button>
     </div>
   </div>
 </template>

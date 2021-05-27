@@ -4,6 +4,7 @@
       v-bind:tasks="tasksData"
       :showCompletedTasks="false"
       v-on:add-task="addTask"
+      v-on:remove-task="removeTask"
     ></TaskList>
     <TaskList v-bind:tasks="tasksData" :showCompletedTasks="true"></TaskList>
   </div>
@@ -39,6 +40,14 @@ export default {
         .then((response) => {
           this.tasksData = [...this.tasksData, response.data];
         });
+    },
+    removeTask(id) {
+      axios
+        .delete("http://185.246.66.84:3000/llerman/tasks/" + id)
+        .then(() => {
+          this.tasksData = this.tasksData.filter((task) => task.id !== id);
+        })
+        .catch((error) => console.log(error));
     },
   },
   data() {

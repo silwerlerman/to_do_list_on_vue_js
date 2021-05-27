@@ -9,7 +9,12 @@
           <button v-on:click="$emit('add-task')">Добавить</button>
         </div>
       </div>
-      <Task v-for="task in filterTasks" v-bind:task="task" :key="task.id" />
+      <Task
+        v-for="task in filterTasks"
+        v-bind:task="task"
+        v-on:remove-task="removeTask"
+        :key="task.id"
+      />
     </div>
   </div>
 </template>
@@ -23,6 +28,11 @@ export default {
   },
   components: {
     Task,
+  },
+  methods: {
+    removeTask(id) {
+      this.$emit("remove-task", id);
+    },
   },
   computed: {
     filterTasks() {
