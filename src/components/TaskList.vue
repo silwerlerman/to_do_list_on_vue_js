@@ -5,11 +5,15 @@
         <h2>
           {{ showCompletedTasks ? "Завершенные задачи" : "Текущие задачи" }}
         </h2>
+        <div v-if="!showCompletedTasks" v-bind:class="{ addButton: true }">
+          <button v-on:click="$emit('add-task')">Добавить</button>
+        </div>
       </div>
       <Task v-for="task in filterTasks" v-bind:task="task" :key="task.id" />
     </div>
   </div>
 </template>
+
 <script>
 import Task from "@/components/Task";
 export default {
@@ -29,6 +33,7 @@ export default {
   },
 };
 </script>
+
 <style scope>
 .list {
   min-width: 400px;
@@ -38,5 +43,10 @@ export default {
   flex-direction: column;
   align-items: center;
   align-content: center;
+}
+.addbutton {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
 }
 </style>

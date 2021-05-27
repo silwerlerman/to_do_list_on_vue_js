@@ -23,6 +23,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -33,6 +34,7 @@ export default {
   },
 };
 </script>
+
 <style scope>
 .item {
   display: flex;
